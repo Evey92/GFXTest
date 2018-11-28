@@ -1,6 +1,7 @@
 #include "kraD3D11GraphicsAPI.h"
 #include "ConstantBufferMatrices.h"
 
+
 namespace kraEngineSDK {
   
   HRESULT
@@ -252,6 +253,9 @@ namespace kraEngineSDK {
 
     m_device.m_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
     
+    Texture m_cubeTexture;
+    m_cubeTexture.createTexture2DFromFile(m_device.m_pd3dDevice, "cube.png",
+                                          DXGI_FORMAT_R8G8B8A8_UNORM, D3D11_BIND_SHADER_RESOURCE);
     /*
     * TODO:
     * -Load Texture

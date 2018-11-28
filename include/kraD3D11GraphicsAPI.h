@@ -1,7 +1,6 @@
 #pragma once
 
 #include "kraPrerequisitesGFX.h"
-
 #include "kraD3D11Device.h"
 #include "kraD3D11RenderTargetView.h"
 #include "kraD3D11Texture.h"
@@ -18,6 +17,7 @@
 #include "kraVertex.h"
 #include <d3d11.h>
 #include <windows.h>
+
 namespace kraEngineSDK {
   class  GraphicsAPI
   {
