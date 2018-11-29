@@ -245,11 +245,11 @@ namespace kraEngineSDK {
     m_indexbuffer.add(index);
 
     m_indexbuffer.createHardwareBuffer(m_device.m_pd3dDevice);
-    m_indexbuffer.setIndexBuffer(m_device.m_pImmediateContext);    
+    m_indexbuffer.setIndexBuffer(m_device.m_pImmediateContext);
 
-    /*m_neverchanges.createhardwarebuffer(m_device.m_pd3ddevice);
-    m_changesonresize.createhardwarebuffer(m_device.m_pd3ddevice);
-    m_changeseveryframe.createhardwarebuffer(m_device.m_pd3ddevice);*/
+    m_neverChanges.createHardwareBuffer(m_device.m_pd3dDevice);
+    m_changesOnResize.createHardwareBuffer(m_device.m_pd3dDevice);
+    m_changesEveryFrame.createHardwareBuffer(m_device.m_pd3dDevice);
 
     m_device.m_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
     

@@ -14,6 +14,7 @@
 #include "kraD3D11VertexBuffer.h"
 #include "kraD3D11IndexBuffer.h"
 #include "kraD3D11ConstantBuffer.h"
+#include "ConstantBufferMatrices.h"
 #include "kraVertex.h"
 #include <d3d11.h>
 #include <windows.h>
@@ -42,9 +43,9 @@ namespace kraEngineSDK {
     PixelShader m_pixelShader;
     VertexBuffer<Vertex> m_vertexBuffer;
     IndexBuffer<unsigned short> m_indexbuffer;
-    //ConstantBuffer<CBNeverChanges> m_neverChanges;
-    //ConstantBuffer<CBChangeOnResize> m_ChangesOnResize;
-    //ConstantBuffer<CBChangesEveryFrame> m_ChangesEveryFrame;
+    ConstantBuffer<CBNeverChanges> m_neverChanges;
+    ConstantBuffer<CBChangeOnResize> m_changesOnResize;
+    ConstantBuffer<CBChangesEveryFrame> m_changesEveryFrame;
     Texture m_pBackBuffer;
     Texture m_texture;
   };

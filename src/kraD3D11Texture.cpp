@@ -1,4 +1,6 @@
 #include "kraD3D11Texture.h"
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
 
 namespace kraEngineSDK {
 
@@ -7,7 +9,7 @@ namespace kraEngineSDK {
   }
 
   void
-    Texture::createTexture2D(ID3D11Device* pDevice, int height, int width,
+  Texture::createTexture2D(ID3D11Device* pDevice, int height, int width,
       DXGI_FORMAT format, D3D11_BIND_FLAG bindFlag) {
     D3D11_TEXTURE2D_DESC descTexture;
 
@@ -30,7 +32,7 @@ namespace kraEngineSDK {
   }
 
   void
-    Texture::createTexture2D(ID3D11Device* pDevice, int height, int width,
+  Texture::createTexture2D(ID3D11Device* pDevice, int height, int width,
       DXGI_FORMAT format, D3D11_BIND_FLAG bindFlag,
       D3D11_TEXTURE2D_DESC descTexture) {
 
@@ -54,7 +56,7 @@ namespace kraEngineSDK {
 
   HRESULT
   Texture::createTexture2DFromFile(ID3D11Device* pDevice, const char*  filename,
-      DXGI_FORMAT format, D3D11_BIND_FLAG bindFlag) {
+                                   DXGI_FORMAT format, D3D11_BIND_FLAG bindFlag) {
     
     HRESULT hr = S_OK;
     int channels;
@@ -64,7 +66,7 @@ namespace kraEngineSDK {
     if (!image)
     {
       throw std::exception("Texture couldn't be loaded." );
-      stbi_image_free(image);
+      //stbi_image_free(image);
       image = stbi_load(m_missingTexture, &m_width, &m_height, &channels, 4);
     }
 
@@ -99,7 +101,7 @@ namespace kraEngineSDK {
   }
 
   void
-    Texture::releaseTexture() {
+  Texture::releaseTexture() {
     m_pd3dTexture2D->Release();
   }
 }
