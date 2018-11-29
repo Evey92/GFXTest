@@ -15,6 +15,9 @@
 #include "kraD3D11IndexBuffer.h"
 #include "kraD3D11ConstantBuffer.h"
 #include "ConstantBufferMatrices.h"
+#include "kraD3D11ShaderResourceView.h"
+#include "kraD3D11Sampler.h"
+#include "kraVector4.h"
 #include "kraVertex.h"
 #include <d3d11.h>
 #include <windows.h>
@@ -48,5 +51,11 @@ namespace kraEngineSDK {
     ConstantBuffer<CBChangesEveryFrame> m_changesEveryFrame;
     Texture m_pBackBuffer;
     Texture m_texture;
+    ShaderResourceView m_shaderRV;
+    SamplerState m_samplerState;
+    Matrix4 m_World;
+    Matrix4 m_View;
+    Matrix4 m_Projection;
+    Vector4 m_meshColor = Vector4(.7f, .7f, .7f, 1.0f);
   };
 }

@@ -4,16 +4,16 @@
 
 namespace kraEngineSDK {
   
-  class CBNeverChanges {
+  struct CBNeverChanges {
     Matrix4 m_view;
   };
 
-  class CBChangeOnResize {
+  struct CBChangeOnResize {
     Matrix4 m_projection;
 
   };
 
-  class CBChangesEveryFrame {
+  struct CBChangesEveryFrame {
     Matrix4 m_world;
     Vector4 m_vMeshColor;
   };

@@ -61,12 +61,12 @@ namespace kraEngineSDK {
     HRESULT hr = S_OK;
     int channels;
 
-    unsigned char* image = stbi_load(filename, &m_width, &m_height, &channels, 4);
+    auto image = stbi_load(filename, &m_width, &m_height, &channels, 4);
 
     if (!image)
     {
       throw std::exception("Texture couldn't be loaded." );
-      //stbi_image_free(image);
+      stbi_image_free(image);
       image = stbi_load(m_missingTexture, &m_width, &m_height, &channels, 4);
     }
 

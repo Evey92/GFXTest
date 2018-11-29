@@ -14,7 +14,12 @@ namespace kraEngineSDK {
       Pos.y = vert.y;
       Pos.z = vert.z;
       Pos.w = 1.0f;
-
+    }
+    Vertex(float x, float y, float z) {
+      Pos.x = x;
+      Pos.y = y;
+      Pos.z = z;
+      Pos.w = 1;
     }
       
     Vector4 Pos;

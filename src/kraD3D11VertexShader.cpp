@@ -8,7 +8,7 @@ namespace kraEngineSDK {
       const char* entryPoint) {
     HRESULT hr = S_OK;
 
-    hr = compileShaderFromFile(fileName, entryPoint, "vs_4_0", &m_blob);
+    hr = compileShaderFromFile(fileName, entryPoint, "vs_5_0", &m_blob);
 
     if (FAILED(hr))
     {

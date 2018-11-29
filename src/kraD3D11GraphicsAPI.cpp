@@ -35,12 +35,12 @@ namespace kraEngineSDK {
     m_renderTargetView.createRenderTargetView(m_device.m_pd3dDevice,
                                              m_device.m_pSwapChain);
 
-    /*m_depthStencil.createDepthStencil(m_device.m_pd3dDevice, 
+    m_depthStencil.createDepthStencil(m_device.m_pd3dDevice, 
                                       m_device.m_height,
                                       m_device.m_width);
 
     m_depthStencilView.createDepthStencilView(m_device.m_pd3dDevice,
-                                              &m_depthStencil);*/
+                                              &m_depthStencil);
     m_device.setRenderTarget(m_renderTargetView.m_pRenderTargetView,
                              m_depthStencilView.m_pDepthStencilView);
    
@@ -57,7 +57,7 @@ namespace kraEngineSDK {
     m_vertexShader.createVertexShader(m_device.m_pd3dDevice);
 
     m_inputLayout.defineVertexLayout();
-    //m_inputLayout.defineTexcoordLayout();
+    m_inputLayout.defineTexcoordLayout();
     m_inputLayout.createInputLayout(m_device.m_pd3dDevice,
                                     &m_vertexShader);
     m_inputLayout.setInputLayout(m_device.m_pImmediateContext);
@@ -70,14 +70,14 @@ namespace kraEngineSDK {
 
     m_pixelShader.createPixelShader(m_device.m_pd3dDevice);
 
-    Vertex vert1(Vector3(0.0f, 0.5f, 0.5f));
+    /*Vertex vert1(Vector3(0.0f, 0.5f, 0.5f));
     m_vertexBuffer.add(vert1);
     Vertex vert2(Vector3(0.5f, -0.5f, 0.5f));
     m_vertexBuffer.add(vert2);
     Vertex vert3(Vector3(-0.5f, -0.5f, 0.5f));
-    m_vertexBuffer.add(vert3);
+    m_vertexBuffer.add(vert3);*/
 
-    /*Vertex vert1(Vector3(-1.0f, 1.0f, -1.0f));
+    Vertex vert1(Vector3(-1.0f, 1.0f, -1.0f));
     vert1.Tex = Vector2(0.0f, 0.0f);
     m_vertexBuffer.add(vert1);
     Vertex vert2(Vector3(1.0f, 1.0f, -1.0f));
@@ -153,14 +153,14 @@ namespace kraEngineSDK {
     m_vertexBuffer.add(vert23);
     Vertex vert24(Vector3(-1.0f, 1.0f, 1.0f));
     vert24.Tex = Vector2(0.0f, 1.0f);
-    m_vertexBuffer.add(vert24);*/
+    m_vertexBuffer.add(vert24);
 
     m_vertexBuffer.createHardwareBuffer(m_device.m_pd3dDevice);
     m_vertexBuffer.setVertexBuffer(m_device.m_pImmediateContext);
 
     unsigned short index;
     //////////////////////////////////////////////////////////////////////////
-  /*  index = 3;
+    index = 3;
     m_indexbuffer.add(index);
     index = 1;
     m_indexbuffer.add(index);
@@ -245,11 +245,9 @@ namespace kraEngineSDK {
     m_indexbuffer.add(index);
 
     m_indexbuffer.createHardwareBuffer(m_device.m_pd3dDevice);
-<<<<<<< HEAD
-    m_indexbuffer.setIndexBuffer(m_device.m_pImmediateContext);  */  
-=======
-    m_indexbuffer.setIndexBuffer(m_device.m_pImmediateContext);
->>>>>>> fa727641e076a97eeea980c84ff9fe8137b79ad8
+
+    m_indexbuffer.setIndexBuffer(m_device.m_pImmediateContext);    
+
 
     m_neverChanges.createHardwareBuffer(m_device.m_pd3dDevice);
     m_changesOnResize.createHardwareBuffer(m_device.m_pd3dDevice);
@@ -259,14 +257,38 @@ namespace kraEngineSDK {
     
     Texture m_cubeTexture;
     m_cubeTexture.createTexture2DFromFile(m_device.m_pd3dDevice, "cube.png",
-                                          DXGI_FORMAT_R8G8B8A8_UNORM, D3D11_BIND_SHADER_RESOURCE);
+                                          DXGI_FORMAT_R8G8B8A8_UNORM,
+                                          D3D11_BIND_SHADER_RESOURCE);
+
+    m_shaderRV.createShaderResourceView(m_device.m_pd3dDevice,
+                                        m_cubeTexture.m_pd3dTexture2D);
+    m_shaderRV.setShaderResourceView(m_device.m_pImmediateContext);
+    
+    m_World.identity();
+
+    Vector4 Eye = Vector4(0.0f, 3.0f, -6.0f, 0.0f);
+    Vector4 At = Vector4(0.0f, 1.0f, 0.0f, 0.0f);
+    Vector4 Up = Vector4(0.0f, 1.0f, 0.0f, 0.0f);
+
+    m_View.MatrixLookAtLH(Eye, At, Up);
+
+    CBNeverChanges constNeverChange;
+    constNeverChange.m_view.transpose();
+    m_device.m_pImmediateContext->UpdateSubresource(m_neverChanges.m_pBuffer,
+                                                    0, nullptr,
+                                                    &constNeverChange, 0, 0);
+
+    m_Projection = ;
+
+    CBChangeOnResize constChangeResize;
+    constChangeResize.m_projection.transpose();
+    m_device.m_pImmediateContext->UpdateSubresource(m_changesOnResize.m_pBuffer,
+                                                    0, nullptr,
+                                                    &constChangeResize,
+                                                    0, 0);
     /*
     * TODO:
-    * -Load Texture
-    * -Create Sample State
-    * -Initialize World matrices
-    * -Initialize View Matrix
-    * -Iniitialize projection Matrix
+    * -Make the Matrix4.PerspectiveFOVLH;
     * After Setup, call Render
     */
    
@@ -293,12 +315,12 @@ namespace kraEngineSDK {
     m_device.cleanContextState();
     
     m_vertexBuffer.cleanVertexBuffer();
-    //m_indexBuffer.cleanIndexBuffer();
+    m_indexbuffer.cleanIndexBuffer();
     m_inputLayout.cleanInputLayout();
     m_vertexShader.cleanShader();
     m_pixelShader.cleanShader();
-    //m_depthStencil.cleanDepthStencil();
-   // m_depthStencilView.cleanDSV();
+    m_depthStencil.cleanDepthStencil();
+    m_depthStencilView.cleanDSV();
     m_renderTargetView.cleanRTV();
     m_device.cleanSwapChain();
     m_device.cleanContext();

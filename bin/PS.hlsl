@@ -1,4 +1,12 @@
-float4 PS( float4 Pos : SV_POSITION ) : SV_Target
+Texture2D txDiffuse : register( t0 );
+SamplerState samLinear : register( s0 );
+struct PS_INPUT
 {
-  return float4 (1.0f, 1.0f, 0.0f, 1.0f);// Yellow, with Alpha = 1
+  float4 Pos : SV_POSITION;
+  float2 Tex : TEXCOORD0; 
+};
+
+float4 PS( PS_INPUT input) : SV_Target
+{
+    return txDiffuse.Sample( samLinear, input.Tex ) * vMeshColor;
 }

@@ -2,19 +2,23 @@
 
 
 namespace kraEngineSDK {
-  /*HRESULT
-  ShaderResourceView::createShaderResourceView(ID3D11Device* pDevice, const wchar_t* fileName) {
+  HRESULT
+  ShaderResourceView::createShaderResourceView(ID3D11Device* pDevice, 
+                                               ID3D11Texture2D* texture) {
     HRESULT hr;
-    hr = pDevice->CreateShaderResourceView();
+    hr = pDevice->CreateShaderResourceView(texture, nullptr, &m_pTextureRV);
     
     if (FAILED(hr)) {
+      throw std::exception("Failed to create Shader Resource View.");
       return hr;
-    }*/
-  //}
+    }
 
-  /*HRESULT
-  ShaderResourceView::createShaderResourceViewFromFie(ID3D11Device* pDevice, const wchar_t* fileName) {
-    HRESULT hr;
-    hr = D3DX11CreateShaderResourceViewFromFile(pDevice, fileName, NULL, NULL, &m_pTextureRV, NULL);
-  }*/
+    return hr;
+  }
+
+  HRESULT
+  ShaderResourceView::setShaderResourceView(ID3D11DeviceContext* pDeviceContext) {
+    pDeviceContext->PSSetShaderResources(0, 1, &m_pTextureRV);
+  }
+
 }
