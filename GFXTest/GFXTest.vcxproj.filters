@@ -101,6 +101,9 @@
     <ClCompile Include="..\src\kraWindowsMath.cpp">
       <Filter>Source Files\src</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\kraMatrix4.cpp">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GFXTest.rc">
@@ -212,7 +215,10 @@
     <ClInclude Include="..\include\kraWindowsMath.h">
       <Filter>Source Files\include</Filter>
     </ClInclude>
-    <ClInclude Include="ConstantBufferMatrices.h">
+    <ClInclude Include="..\include\ConstantBufferMatrices.h">
+      <Filter>Source Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\kraMatrix4.h">
       <Filter>Source Files\include</Filter>
     </ClInclude>
   </ItemGroup>

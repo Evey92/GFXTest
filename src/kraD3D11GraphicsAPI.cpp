@@ -34,12 +34,12 @@ namespace kraEngineSDK {
     m_renderTargetView.createRenderTargetView(m_device.m_pd3dDevice,
                                              m_device.m_pSwapChain);
 
-    m_depthStencil.createDepthStencil(m_device.m_pd3dDevice, 
+    /*m_depthStencil.createDepthStencil(m_device.m_pd3dDevice, 
                                       m_device.m_height,
                                       m_device.m_width);
 
     m_depthStencilView.createDepthStencilView(m_device.m_pd3dDevice,
-                                              &m_depthStencil);
+                                              &m_depthStencil);*/
     m_device.setRenderTarget(m_renderTargetView.m_pRenderTargetView,
                              m_depthStencilView.m_pDepthStencilView);
    
@@ -56,7 +56,7 @@ namespace kraEngineSDK {
     m_vertexShader.createVertexShader(m_device.m_pd3dDevice);
 
     m_inputLayout.defineVertexLayout();
-    m_inputLayout.defineTexcoordLayout();
+    //m_inputLayout.defineTexcoordLayout();
     m_inputLayout.createInputLayout(m_device.m_pd3dDevice,
                                     &m_vertexShader);
     m_inputLayout.setInputLayout(m_device.m_pImmediateContext);
@@ -159,7 +159,7 @@ namespace kraEngineSDK {
 
     unsigned short index;
     //////////////////////////////////////////////////////////////////////////
-    index = 3;
+  /*  index = 3;
     m_indexbuffer.add(index);
     index = 1;
     m_indexbuffer.add(index);
@@ -244,7 +244,7 @@ namespace kraEngineSDK {
     m_indexbuffer.add(index);
 
     m_indexbuffer.createHardwareBuffer(m_device.m_pd3dDevice);
-    m_indexbuffer.setIndexBuffer(m_device.m_pImmediateContext);    
+    m_indexbuffer.setIndexBuffer(m_device.m_pImmediateContext);  */  
 
     /*m_neverchanges.createhardwarebuffer(m_device.m_pd3ddevice);
     m_changesonresize.createhardwarebuffer(m_device.m_pd3ddevice);
@@ -289,8 +289,8 @@ namespace kraEngineSDK {
     m_inputLayout.cleanInputLayout();
     m_vertexShader.cleanShader();
     m_pixelShader.cleanShader();
-    m_depthStencil.cleanDepthStencil();
-    m_depthStencilView.cleanDSV();
+    //m_depthStencil.cleanDepthStencil();
+   // m_depthStencilView.cleanDSV();
     m_renderTargetView.cleanRTV();
     m_device.cleanSwapChain();
     m_device.cleanContext();
