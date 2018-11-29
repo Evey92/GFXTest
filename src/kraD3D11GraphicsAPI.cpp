@@ -1,6 +1,7 @@
 #include "kraD3D11GraphicsAPI.h"
 #include "ConstantBufferMatrices.h"
 
+
 namespace kraEngineSDK {
   
   HRESULT
@@ -244,14 +245,21 @@ namespace kraEngineSDK {
     m_indexbuffer.add(index);
 
     m_indexbuffer.createHardwareBuffer(m_device.m_pd3dDevice);
+<<<<<<< HEAD
     m_indexbuffer.setIndexBuffer(m_device.m_pImmediateContext);  */  
+=======
+    m_indexbuffer.setIndexBuffer(m_device.m_pImmediateContext);
+>>>>>>> fa727641e076a97eeea980c84ff9fe8137b79ad8
 
-    /*m_neverchanges.createhardwarebuffer(m_device.m_pd3ddevice);
-    m_changesonresize.createhardwarebuffer(m_device.m_pd3ddevice);
-    m_changeseveryframe.createhardwarebuffer(m_device.m_pd3ddevice);*/
+    m_neverChanges.createHardwareBuffer(m_device.m_pd3dDevice);
+    m_changesOnResize.createHardwareBuffer(m_device.m_pd3dDevice);
+    m_changesEveryFrame.createHardwareBuffer(m_device.m_pd3dDevice);
 
     m_device.m_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
     
+    Texture m_cubeTexture;
+    m_cubeTexture.createTexture2DFromFile(m_device.m_pd3dDevice, "cube.png",
+                                          DXGI_FORMAT_R8G8B8A8_UNORM, D3D11_BIND_SHADER_RESOURCE);
     /*
     * TODO:
     * -Load Texture
