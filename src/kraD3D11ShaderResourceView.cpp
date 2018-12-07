@@ -16,8 +16,10 @@ namespace kraEngineSDK {
     return hr;
   }
 
-  HRESULT
+  void
   ShaderResourceView::setShaderResourceView(ID3D11DeviceContext* pDeviceContext) {
+    //HRESULT hr = S_OK;
+    
     pDeviceContext->PSSetShaderResources(0, 1, &m_pTextureRV);
   }
 

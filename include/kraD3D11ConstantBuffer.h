@@ -8,6 +8,7 @@ namespace kraEngineSDK {
   {
   public:
     ConstantBuffer() = default;
+    
 
     void reserve(size_t numObjects)
     {

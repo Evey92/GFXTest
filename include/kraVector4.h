@@ -293,7 +293,7 @@ namespace kraEngineSDK {
      * @return Regresa el tamaño del vector.
      */
     static Vector4
-      cross(Vector4& V1, Vector4& V2);
+    cross(Vector4& V1, Vector4& V2);
 
     /**
      * @brief Obtiene la distancia enrtre 2 vectores.
@@ -308,13 +308,13 @@ namespace kraEngineSDK {
      * @return Regresa el vector normalizado.
      */
     void
-      normalize();
+    normalize();
 
     void
-      floor();
+    floor();
 
     void
-      ceil();
+    ceil();
 
   public:
     /**
